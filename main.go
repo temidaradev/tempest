@@ -4,7 +4,7 @@ import (
 	"log/slog"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/temidaradev/ehh24/game"
+	"github.com/temidaradev/tempest/game"
 )
 
 func main() {

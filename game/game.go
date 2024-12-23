@@ -6,7 +6,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 	"github.com/setanarut/kamera/v2"
-	"github.com/temidaradev/ehh24/assets"
+	"github.com/temidaradev/tempest/assets"
 )
 
 var (
@@ -19,6 +19,7 @@ var (
 
 type Game struct {
 	player *Player
+	npc    *NPC
 }
 
 func init() {
@@ -35,6 +36,10 @@ func NewGame() *Game {
 		speed: 10,
 	}
 
+	g.npc = &NPC{
+		DIO: &ebiten.DrawImageOptions{},
+	}
+
 	return g
 }
 
@@ -42,19 +47,25 @@ var playerOffsetX = float64(assets.IdleTile[0].Bounds().Dx() / 2)
 var playerOffsetY = float64(assets.IdleTile[0].Bounds().Dy() / 2)
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	HandleBackground(screen)
+	if g.player.isEntered {
+		HandleInterior(screen)
+	} else {
+		HandleBackground(screen)
+	}
 	g.player.Draw(screen)
+	g.npc.createNPC(screen)
 	ebitenutil.DebugPrint(screen, fmt.Sprintf("X: %v Y:%v", g.player.X, g.player.Y))
 }
 
 func (g *Game) Update() error {
 	g.player.Update()
+	g.npc.Update()
 	if g.player.X >= 0 && g.player.X <= 1660 {
 		cam.LookAt(g.player.X, g.player.Y)
 	} else if g.player.X >= 1660 {
-		cam.LookAt(1660, g.player.Y)
+		cam.LookAt(1660, g.player.Y*2)
 	} else if g.player.X <= 0 {
-		cam.LookAt(0, g.player.Y)
+		cam.LookAt(0, g.player.Y*2)
 	}
 	return nil
 }
