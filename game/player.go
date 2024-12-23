@@ -48,34 +48,57 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		frameCountIdle := 4
 		i := (p.count / 8) % frameCountIdle
 
-		p.DIO.GeoM.Scale(2, 2)
-		p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+315)
+		if p.isEntered {
+			p.DIO.GeoM.Scale(3, 3)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+215)
 
-		cam.Draw(assets.IdleTile[i], p.DIO, screen)
+			cam.Draw(assets.IdleTile[i], p.DIO, screen)
+		} else {
+			p.DIO.GeoM.Scale(2, 2)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+315)
+
+			cam.Draw(assets.IdleTile[i], p.DIO, screen)
+		}
 		p.DIO.GeoM.Reset()
 	}
 	if p.vx == 0.5 {
 		frameCountWalk := 6
 		i := (p.count / 8) % frameCountWalk
 
-		p.DIO.GeoM.Scale(2, 2)
-		p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+315)
+		if p.isEntered {
+			p.DIO.GeoM.Scale(3, 3)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+215)
 
-		cam.Draw(assets.RunTile[i], p.DIO, screen)
+			cam.Draw(assets.RunTile[i], p.DIO, screen)
+		} else {
+			p.DIO.GeoM.Scale(2, 2)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+315)
+
+			cam.Draw(assets.RunTile[i], p.DIO, screen)
+		}
 		p.DIO.GeoM.Reset()
 	}
 	if p.vx == -0.5 {
 		frameCountWalk := 6
 		i := (p.count / 8) % -frameCountWalk
 
-		p.DIO.GeoM.Scale(-2, 2)
-		p.DIO.GeoM.Translate(p.X+playerOffsetX+325, p.Y+playerOffsetY+315)
+		if p.isEntered {
+			p.DIO.GeoM.Scale(-3, 3)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+425, p.Y+playerOffsetY+215)
 
-		cam.Draw(assets.RunTile[i], p.DIO, screen)
+			cam.Draw(assets.RunTile[i], p.DIO, screen)
+		} else {
+			p.DIO.GeoM.Scale(-2, 2)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+325, p.Y+playerOffsetY+315)
+
+			cam.Draw(assets.RunTile[i], p.DIO, screen)
+		}
 		p.DIO.GeoM.Reset()
 	}
-	if p.X >= -150 && p.X <= -40 {
-		esset.UseFont(screen, assets.MyFont, "Your Family's House", 16, opSpecific)
-		esset.UseFont(screen, assets.MyFont, "Press \"E\" to enter", 16, opSpecific2)
+	if !p.isEntered {
+		if p.X >= -150 && p.X <= -40 {
+			esset.UseFont(screen, assets.MyFont, "Your Family's House", 16, opSpecific)
+			esset.UseFont(screen, assets.MyFont, "Press \"E\" to enter", 16, opSpecific2)
+		}
 	}
 }
