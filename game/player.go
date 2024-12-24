@@ -6,7 +6,6 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
 	"github.com/hajimehoshi/ebiten/v2/text/v2"
-	"github.com/temidaradev/esset"
 	"github.com/temidaradev/tempest/assets"
 )
 
@@ -16,7 +15,7 @@ type Player struct {
 	DIO       *ebiten.DrawImageOptions
 	speed     float64
 	count     int
-	isEntered bool
+	isEntered [3]bool
 }
 
 func (p *Player) Update() {
@@ -26,11 +25,28 @@ func (p *Player) Update() {
 	p.Y += p.vy * p.speed
 
 	//-150, -40
-	p.X = min(max(p.X, -285), 1965)
+	if p.isEntered[0] {
+		p.X = min(max(p.X, -325), 670)
+	} else {
+		p.X = min(max(p.X, -285), 1965)
+	}
 
 	if p.X >= -150 && p.X <= -40 {
 		if inpututil.IsKeyJustPressed(ebiten.KeyE) {
-			p.isEntered = true
+			p.isEntered[0] = true
+		}
+	} else if p.X >= 1680 && p.X <= 1820 {
+		if inpututil.IsKeyJustPressed(ebiten.KeyE) {
+			p.isEntered[1] = true
+		}
+	}
+
+	if p.isEntered[0] {
+		if p.X >= 600 && p.X <= 670 {
+			if inpututil.IsKeyJustPressed(ebiten.KeyE) {
+				p.isEntered[0] = false
+				p.X = -30
+			}
 		}
 	}
 }
@@ -48,7 +64,7 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		frameCountIdle := 4
 		i := (p.count / 8) % frameCountIdle
 
-		if p.isEntered {
+		if p.isEntered[0] {
 			p.DIO.GeoM.Scale(3, 3)
 			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+215)
 
@@ -65,7 +81,7 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		frameCountWalk := 6
 		i := (p.count / 8) % frameCountWalk
 
-		if p.isEntered {
+		if p.isEntered[0] {
 			p.DIO.GeoM.Scale(3, 3)
 			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+215)
 
@@ -82,9 +98,9 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		frameCountWalk := 6
 		i := (p.count / 8) % -frameCountWalk
 
-		if p.isEntered {
+		if p.isEntered[0] {
 			p.DIO.GeoM.Scale(-3, 3)
-			p.DIO.GeoM.Translate(p.X+playerOffsetX+425, p.Y+playerOffsetY+215)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+415, p.Y+playerOffsetY+215)
 
 			cam.Draw(assets.RunTile[i], p.DIO, screen)
 		} else {
@@ -94,11 +110,5 @@ func (p *Player) Draw(screen *ebiten.Image) {
 			cam.Draw(assets.RunTile[i], p.DIO, screen)
 		}
 		p.DIO.GeoM.Reset()
-	}
-	if !p.isEntered {
-		if p.X >= -150 && p.X <= -40 {
-			esset.UseFont(screen, assets.MyFont, "Your Family's House", 16, opSpecific)
-			esset.UseFont(screen, assets.MyFont, "Press \"E\" to enter", 16, opSpecific2)
-		}
 	}
 }
