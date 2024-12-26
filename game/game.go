@@ -83,13 +83,13 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			esset.UseFont(screen, assets.MyFont, "Press \"E\" to enter", 16, opO2)
 		}
 	}
-	//g.npc.createNPC(screen)
+	g.npc.createNPC(screen)
 	ebitenutil.DebugPrint(screen, fmt.Sprintf("X: %v Y:%v", g.player.X, g.player.Y))
 }
 
 func (g *Game) Update() error {
 	g.player.Update()
-	//g.npc.Update()
+	g.npc.Update()
 	if g.player.isEntered[0] {
 		if g.player.X >= 0 && g.player.X <= 400 {
 			cam.LookAt(g.player.X, g.player.Y)
