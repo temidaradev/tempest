@@ -23,3 +23,4 @@ var Interior = esset.GetAsset(Assets, "backgrounds/interior.png")
 
 // NPC
 var DrunkTile = esset.GetMultiAssets(Assets, "npc/drunk/walk/*.png")
+var ExBfTile = esset.GetMultiAssets(Assets, "npc/ex-bf/idle/*.png")
