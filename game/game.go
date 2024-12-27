@@ -52,10 +52,10 @@ var playerOffsetY = float64(assets.IdleTile[0].Bounds().Dy() / 2)
 func (g *Game) Draw(screen *ebiten.Image) {
 	if g.player.isEntered[0] {
 		HandleInterior(screen)
+		g.npc.createNPC(screen)
 	} else {
 		HandleBackground(screen)
 	}
-	g.player.Draw(screen)
 	opO1 := &text.DrawOptions{}
 	opO1.GeoM.Translate(g.player.X+playerOffsetX+325, g.player.Y+playerOffsetY+280)
 	opO1.ColorScale.ScaleWithColor(color.White)
@@ -83,8 +83,8 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			esset.UseFont(screen, assets.MyFont, "Press \"E\" to enter", 16, opO2)
 		}
 	}
-	g.npc.createNPC(screen)
 	ebitenutil.DebugPrint(screen, fmt.Sprintf("X: %v Y:%v", g.player.X, g.player.Y))
+	g.player.Draw(screen)
 }
 
 func (g *Game) Update() error {
