@@ -49,6 +49,24 @@ func (p *Player) Update() {
 			}
 		}
 	}
+
+	if p.isEntered[0] {
+		if p.X >= 0 && p.X <= 400 {
+			cam.LookAt(p.X, p.Y)
+		} else if p.X >= 400 {
+			cam.LookAt(400, p.Y*2)
+		} else if p.X <= 0 {
+			cam.LookAt(0, p.Y*2)
+		}
+	} else {
+		if p.X >= 0 && p.X <= 1660 {
+			cam.LookAt(p.X, p.Y)
+		} else if p.X >= 1660 {
+			cam.LookAt(1660, p.Y*2)
+		} else if p.X <= 0 {
+			cam.LookAt(0, p.Y*2)
+		}
+	}
 }
 
 func (p *Player) Draw(screen *ebiten.Image) {
