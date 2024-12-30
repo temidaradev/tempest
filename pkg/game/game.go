@@ -10,6 +10,7 @@ import (
 	"github.com/setanarut/kamera/v2"
 	"github.com/temidaradev/esset"
 	"github.com/temidaradev/tempest/assets"
+	"github.com/temidaradev/tempest/pkg/intro"
 )
 
 var (
@@ -23,7 +24,7 @@ var (
 type Game struct {
 	player *Player
 	npc    *NPC
-	intro  *State
+	intro  *intro.State
 }
 
 func init() {
@@ -44,7 +45,7 @@ func NewGame() *Game {
 		DIO: &ebiten.DrawImageOptions{},
 	}
 
-	g.intro = &State{}
+	g.intro = &intro.State{}
 
 	return g
 }
