@@ -23,6 +23,7 @@ var (
 type Game struct {
 	player *Player
 	npc    *NPC
+	intro  *State
 }
 
 func init() {
@@ -43,6 +44,8 @@ func NewGame() *Game {
 		DIO: &ebiten.DrawImageOptions{},
 	}
 
+	g.intro = &State{}
+
 	return g
 }
 
@@ -50,6 +53,7 @@ var playerOffsetX = float64(assets.IdleTile[0].Bounds().Dx() / 2)
 var playerOffsetY = float64(assets.IdleTile[0].Bounds().Dy() / 2)
 
 func (g *Game) Draw(screen *ebiten.Image) {
+	g.intro.Draw(screen)
 	if g.player.isEntered[0] {
 		HandleInterior(screen)
 		g.npc.createNPC(screen)
@@ -57,11 +61,11 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		HandleBackground(screen)
 	}
 	opO1 := &text.DrawOptions{}
-	opO1.GeoM.Translate(g.player.X+playerOffsetX+325, g.player.Y+playerOffsetY+280)
+	opO1.GeoM.Translate(g.player.X+playerOffsetX+150, g.player.Y+playerOffsetY+340)
 	opO1.ColorScale.ScaleWithColor(color.White)
 
 	opO2 := &text.DrawOptions{}
-	opO2.GeoM.Translate(g.player.X+playerOffsetX+325, g.player.Y+playerOffsetY+296)
+	opO2.GeoM.Translate(g.player.X+playerOffsetX+150, g.player.Y+playerOffsetY+356)
 	opO2.ColorScale.ScaleWithColor(color.White)
 
 	opI1 := &text.DrawOptions{}
@@ -88,6 +92,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 }
 
 func (g *Game) Update() error {
+	g.intro.Update()
 	g.player.Update()
 	g.npc.Update()
 	if g.player.isEntered[0] {
