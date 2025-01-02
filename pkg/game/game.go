@@ -6,9 +6,8 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
-	"github.com/hajimehoshi/ebiten/v2/text/v2"
 	"github.com/setanarut/kamera/v2"
-	"github.com/temidaradev/esset"
+	"github.com/temidaradev/esset/v2"
 	"github.com/temidaradev/tempest/assets"
 	"github.com/temidaradev/tempest/pkg/intro"
 )
@@ -61,31 +60,14 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	} else {
 		HandleBackground(screen)
 	}
-	opO1 := &text.DrawOptions{}
-	opO1.GeoM.Translate(g.player.X+playerOffsetX+150, g.player.Y+playerOffsetY+340)
-	opO1.ColorScale.ScaleWithColor(color.White)
-
-	opO2 := &text.DrawOptions{}
-	opO2.GeoM.Translate(g.player.X+playerOffsetX+150, g.player.Y+playerOffsetY+356)
-	opO2.ColorScale.ScaleWithColor(color.White)
-
-	opI1 := &text.DrawOptions{}
-	opI1.GeoM.Translate(g.player.X+playerOffsetX-200, g.player.Y+playerOffsetY+286)
-	opI1.ColorScale.ScaleWithColor(color.White)
-
-	opI2 := &text.DrawOptions{}
-	opI2.GeoM.Translate(g.player.X+playerOffsetX-200, g.player.Y+playerOffsetY+300)
-	opI2.ColorScale.ScaleWithColor(color.White)
 
 	if g.player.isEntered[0] {
 		if g.player.X >= 600 && g.player.X <= 670 {
-			esset.UseFont(screen, assets.MyFont, "Go Back To Streets", 16, opI1)
-			esset.UseFont(screen, assets.MyFont, "Press \"E\" to enter", 16, opI2)
+			esset.DrawText(screen, assets.MyFont, "Go Back To Streets\nPress \"E\" to enter", 16, g.player.X+playerOffsetX-200, g.player.Y+playerOffsetY+275, color.White)
 		}
 	} else {
 		if g.player.X >= -150 && g.player.X <= -40 {
-			esset.UseFont(screen, assets.MyFont, "Your Family's House", 16, opO1)
-			esset.UseFont(screen, assets.MyFont, "Press \"E\" to enter", 16, opO2)
+			esset.DrawText(screen, assets.MyFont, "Your Family's House\nPress \"E\" to enter", 16, g.player.X+playerOffsetX+200, g.player.Y+playerOffsetY+325, color.White)
 		}
 	}
 	ebitenutil.DebugPrint(screen, fmt.Sprintf("X: %v Y:%v", g.player.X, g.player.Y))
