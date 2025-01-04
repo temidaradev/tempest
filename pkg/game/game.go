@@ -62,8 +62,9 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 
 	if g.player.isEntered[0] {
-		if g.player.X >= -270 && g.player.X <= -170 {
-			esset.DrawText(screen, assets.MyFont, "Heyyo Esirgun how are you doin", 16, g.player.X+playerOffsetX+200, g.player.Y+playerOffsetY+325, color.White)
+		if g.player.X >= -325 && g.player.X <= -140 {
+			esset.DrawText(screen, assets.MyFont, "Mecit", 16, g.npc.X+10, g.npc.Y-10, color.White)
+			esset.DrawText(screen, assets.MyFont, "Heyyo Esirgun how are you doin", 16, g.player.X+playerOffsetX+200, g.player.Y+playerOffsetY+275, color.White)
 		}
 		if g.player.X >= 600 && g.player.X <= 670 {
 			esset.DrawText(screen, assets.MyFont, "Go Back To Streets\nPress \"E\" to enter", 16, g.player.X+playerOffsetX-200, g.player.Y+playerOffsetY+275, color.White)
