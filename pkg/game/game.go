@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	w, h             = 635., 475.
+	w, h             = 1920., 1080.
 	groundY          = 400.
 	unit             = 10.
 	targetX, targetY = w / 2, h / 2
@@ -84,24 +84,24 @@ func (g *Game) Update() error {
 	g.npc.Update()
 	if g.player.isEntered[0] {
 		if g.player.X >= 0 && g.player.X <= 400 {
-			cam.LookAt(g.player.X, g.player.Y)
+			cam.LookAt(g.player.X-500, g.player.Y)
 		} else if g.player.X >= 400 {
-			cam.LookAt(400, g.player.Y*2)
+			cam.LookAt(400, g.player.Y)
 		} else if g.player.X <= 0 {
-			cam.LookAt(0, g.player.Y*2)
+			cam.LookAt(0, g.player.Y)
 		}
 	} else {
-		if g.player.X >= 0 && g.player.X <= 1660 {
-			cam.LookAt(g.player.X, g.player.Y)
-		} else if g.player.X >= 1660 {
-			cam.LookAt(1660, g.player.Y*2)
-		} else if g.player.X <= 0 {
-			cam.LookAt(0, g.player.Y*2)
+		if g.player.X >= 350 && g.player.X <= 750 {
+			cam.LookAt(g.player.X-550, g.player.Y-550)
+		} else if g.player.X <= 350 {
+			cam.LookAt(0, g.player.Y-550)
+		} else if g.player.X >= 750 {
+			cam.LookAt(175, g.player.Y-550)
 		}
 	}
 	return nil
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
-	return outsideWidth, outsideHeight
+	return 1920, 1080
 }
