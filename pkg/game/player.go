@@ -19,7 +19,6 @@ type Player struct {
 }
 
 func (p *Player) Update() {
-	p.Y = 535
 	p.count++
 	p.vx, p.vy = Axis()
 	p.X += p.vx * p.speed
@@ -27,15 +26,19 @@ func (p *Player) Update() {
 
 	//-150, -40
 	if p.isEntered[0] {
+		p.Y = 575
 		p.X = min(max(p.X, -325), 2200)
 	} else {
+		p.Y = 535
 		p.X = min(max(p.X, -565), 1690)
 	}
 
-	if p.X >= -435 && p.X <= -310 {
-		if inpututil.IsKeyJustPressed(ebiten.KeyE) {
-			p.isEntered[0] = true
-			p.X = 1780
+	if !p.isEntered[0] {
+		if p.X >= -435 && p.X <= -310 {
+			if inpututil.IsKeyJustPressed(ebiten.KeyE) {
+				p.isEntered[0] = true
+				p.X = 1780
+			}
 		}
 	} else if p.X >= 1680 && p.X <= 1820 {
 		if inpututil.IsKeyJustPressed(ebiten.KeyE) {

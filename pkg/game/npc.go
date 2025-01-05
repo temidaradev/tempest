@@ -13,7 +13,6 @@ type NPC struct {
 }
 
 func (n *NPC) createNPC(screen *ebiten.Image) {
-
 	frameCountIdle := 2
 	i := (n.count / 45) % frameCountIdle
 	n.DIO.GeoM.Scale(7, 7)
