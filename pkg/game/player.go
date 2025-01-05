@@ -27,14 +27,15 @@ func (p *Player) Update() {
 
 	//-150, -40
 	if p.isEntered[0] {
-		p.X = min(max(p.X, -325), 670)
+		p.X = min(max(p.X, -325), 2200)
 	} else {
-		p.X = min(max(p.X, -500), 1675)
+		p.X = min(max(p.X, -565), 1690)
 	}
 
-	if p.X >= -150 && p.X <= -40 {
+	if p.X >= -435 && p.X <= -310 {
 		if inpututil.IsKeyJustPressed(ebiten.KeyE) {
 			p.isEntered[0] = true
+			p.X = 1780
 		}
 	} else if p.X >= 1680 && p.X <= 1820 {
 		if inpututil.IsKeyJustPressed(ebiten.KeyE) {
@@ -43,7 +44,7 @@ func (p *Player) Update() {
 	}
 
 	if p.isEntered[0] {
-		if p.X >= 600 && p.X <= 670 {
+		if p.X >= 1790 && p.X <= 2015 {
 			if inpututil.IsKeyJustPressed(ebiten.KeyE) {
 				p.isEntered[0] = false
 				p.X = -30
@@ -52,11 +53,11 @@ func (p *Player) Update() {
 	}
 
 	if p.isEntered[0] {
-		if p.X >= 0 && p.X <= 400 {
+		if p.X >= 0 && p.X <= 1000 {
 			cam.LookAt(p.X, p.Y)
-		} else if p.X >= 400 {
-			cam.LookAt(400, p.Y)
-		} else if p.X <= 0 {
+		} else if p.X >= 1000 {
+			cam.LookAt(750, p.Y)
+		} else if p.X < 300 {
 			cam.LookAt(0, p.Y)
 		}
 	} else {
@@ -84,9 +85,10 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		i := (p.count / 8) % frameCountIdle
 
 		if p.isEntered[0] {
-			p.DIO.GeoM.Scale(5, 5)
+			p.DIO.GeoM.Scale(7, 7)
 			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+600)
 
+			i = (p.count / 8) % frameCountIdle
 			cam.Draw(assets.IdleTile[i], p.DIO, screen)
 		} else {
 			p.DIO.GeoM.Scale(2, 2)
@@ -101,9 +103,10 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		i := (p.count / 8) % frameCountWalk
 
 		if p.isEntered[0] {
-			p.DIO.GeoM.Scale(5, 5)
+			p.DIO.GeoM.Scale(7, 7)
 			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+600)
 
+			i = (p.count / 8) % frameCountWalk
 			cam.Draw(assets.RunTile[i], p.DIO, screen)
 		} else {
 			p.DIO.GeoM.Scale(2, 2)
@@ -118,9 +121,10 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		i := (p.count / 8) % -frameCountWalk
 
 		if p.isEntered[0] {
-			p.DIO.GeoM.Scale(-5, 5)
-			p.DIO.GeoM.Translate(p.X+playerOffsetX+415, p.Y+playerOffsetY+600)
+			p.DIO.GeoM.Scale(-7, 7)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+550, p.Y+playerOffsetY+600)
 
+			i = (p.count / 8) % frameCountWalk
 			cam.Draw(assets.RunTile[i], p.DIO, screen)
 		} else {
 			p.DIO.GeoM.Scale(-2, 2)

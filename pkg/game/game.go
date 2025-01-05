@@ -66,12 +66,12 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			esset.DrawText(screen, assets.MyFont, "Mecit", 16, g.npc.X+10, g.npc.Y-10, color.White)
 			esset.DrawText(screen, assets.MyFont, "Heyyo Esirgun how are you doin", 16, g.player.X+playerOffsetX+200, g.player.Y+playerOffsetY+275, color.White)
 		}
-		if g.player.X >= 600 && g.player.X <= 670 {
-			esset.DrawText(screen, assets.MyFont, "Go Back To Streets\nPress \"E\" to enter", 16, g.player.X+playerOffsetX-200, g.player.Y+playerOffsetY+275, color.White)
+		if g.player.X >= 1790 && g.player.X <= 2015 {
+			esset.DrawText(screen, assets.MyFont, "Go Back To Streets\nPress \"E\" to enter", 32, g.player.X+playerOffsetX-400, g.player.Y+playerOffsetY-100, color.White)
 		}
 	} else {
-		if g.player.X >= -150 && g.player.X <= -40 {
-			esset.DrawText(screen, assets.MyFont, "Your Family's House\nPress \"E\" to enter", 16, g.player.X+playerOffsetX+200, g.player.Y+playerOffsetY+325, color.White)
+		if g.player.X >= -435 && g.player.X <= -310 {
+			esset.DrawText(screen, assets.MyFont, "Your Family's House\nPress \"E\" to enter", 16, g.player.X+playerOffsetX+400, g.player.Y+playerOffsetY+325, color.White)
 		}
 	}
 	ebitenutil.DebugPrint(screen, fmt.Sprintf("X: %v Y:%v", g.player.X, g.player.Y))
@@ -83,12 +83,12 @@ func (g *Game) Update() error {
 	g.player.Update()
 	g.npc.Update()
 	if g.player.isEntered[0] {
-		if g.player.X >= 0 && g.player.X <= 400 {
-			cam.LookAt(g.player.X-500, g.player.Y)
-		} else if g.player.X >= 400 {
-			cam.LookAt(400, g.player.Y)
-		} else if g.player.X <= 0 {
-			cam.LookAt(0, g.player.Y)
+		if g.player.X >= 300 && g.player.X <= 1000 {
+			cam.LookAt(g.player.X-600, g.player.Y+550)
+		} else if g.player.X >= 1000 {
+			cam.LookAt(g.player.X+600, g.player.Y+550)
+		} else if g.player.X <= 300 {
+			cam.LookAt(0, g.player.Y+550)
 		}
 	} else {
 		if g.player.X >= 350 && g.player.X <= 750 {

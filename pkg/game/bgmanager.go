@@ -13,7 +13,7 @@ func HandleBackground(screen *ebiten.Image) {
 
 func HandleInterior(screen *ebiten.Image) {
 	DIO := &ebiten.DrawImageOptions{}
-	DIO.GeoM.Scale(0.5, 0.5)
-	DIO.GeoM.Translate(0, 800)
+	DIO.GeoM.Scale(0.7, 0.7)
+	DIO.GeoM.Translate(-50, 700)
 	cam.Draw(assets.Interior, DIO, screen)
 }
