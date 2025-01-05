@@ -8,13 +8,12 @@ import (
 func HandleBackground(screen *ebiten.Image) {
 	DIO := &ebiten.DrawImageOptions{}
 	DIO.GeoM.Scale(1, 1)
-	DIO.GeoM.Translate(0, -815)
 	cam.Draw(assets.CityNight, DIO, screen)
 }
 
 func HandleInterior(screen *ebiten.Image) {
 	DIO := &ebiten.DrawImageOptions{}
-	DIO.GeoM.Scale(0.3, 0.32)
-	DIO.GeoM.Translate(-50, 0)
+	DIO.GeoM.Scale(0.7, 0.7)
+	DIO.GeoM.Translate(-50, 700)
 	cam.Draw(assets.Interior, DIO, screen)
 }

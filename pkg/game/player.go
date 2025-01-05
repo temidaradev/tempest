@@ -26,14 +26,19 @@ func (p *Player) Update() {
 
 	//-150, -40
 	if p.isEntered[0] {
-		p.X = min(max(p.X, -325), 670)
+		p.Y = 575
+		p.X = min(max(p.X, -325), 2200)
 	} else {
-		p.X = min(max(p.X, -285), 1965)
+		p.Y = 535
+		p.X = min(max(p.X, -565), 1690)
 	}
 
-	if p.X >= -150 && p.X <= -40 {
-		if inpututil.IsKeyJustPressed(ebiten.KeyE) {
-			p.isEntered[0] = true
+	if !p.isEntered[0] {
+		if p.X >= -435 && p.X <= -310 {
+			if inpututil.IsKeyJustPressed(ebiten.KeyE) {
+				p.isEntered[0] = true
+				p.X = 1780
+			}
 		}
 	} else if p.X >= 1680 && p.X <= 1820 {
 		if inpututil.IsKeyJustPressed(ebiten.KeyE) {
@@ -42,7 +47,7 @@ func (p *Player) Update() {
 	}
 
 	if p.isEntered[0] {
-		if p.X >= 600 && p.X <= 670 {
+		if p.X >= 1790 && p.X <= 2015 {
 			if inpututil.IsKeyJustPressed(ebiten.KeyE) {
 				p.isEntered[0] = false
 				p.X = -30
@@ -51,31 +56,31 @@ func (p *Player) Update() {
 	}
 
 	if p.isEntered[0] {
-		if p.X >= 0 && p.X <= 400 {
+		if p.X >= 0 && p.X <= 1000 {
 			cam.LookAt(p.X, p.Y)
-		} else if p.X >= 400 {
-			cam.LookAt(400, p.Y*2)
-		} else if p.X <= 0 {
-			cam.LookAt(0, p.Y*2)
+		} else if p.X >= 1000 {
+			cam.LookAt(750, p.Y)
+		} else if p.X < 300 {
+			cam.LookAt(0, p.Y)
 		}
 	} else {
-		if p.X >= 0 && p.X <= 1660 {
-			cam.LookAt(p.X, p.Y)
-		} else if p.X >= 1660 {
-			cam.LookAt(1660, p.Y*2)
-		} else if p.X <= 0 {
-			cam.LookAt(0, p.Y*2)
+		if p.X >= 0 && p.X <= 1700 {
+			cam.LookAt(p.X, p.Y-60)
+		} else if p.X >= 1700 {
+			cam.LookAt(1700, p.Y-60)
+		} else if p.X < 350 {
+			cam.LookAt(0, p.Y-60)
 		}
 	}
 }
 
 func (p *Player) Draw(screen *ebiten.Image) {
 	opSpecific := &text.DrawOptions{}
-	opSpecific.GeoM.Translate(p.X+playerOffsetX+325, p.Y+playerOffsetY+280)
+	opSpecific.GeoM.Translate(p.X+playerOffsetX+500, p.Y+playerOffsetY)
 	opSpecific.ColorScale.ScaleWithColor(color.White)
 
 	opSpecific2 := &text.DrawOptions{}
-	opSpecific2.GeoM.Translate(p.X+playerOffsetX+325, p.Y+playerOffsetY+296)
+	opSpecific2.GeoM.Translate(p.X+playerOffsetX+500, p.Y+playerOffsetY)
 	opSpecific2.ColorScale.ScaleWithColor(color.White)
 
 	if p.vx != 0.5 && p.vx != -0.5 {
@@ -83,13 +88,14 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		i := (p.count / 8) % frameCountIdle
 
 		if p.isEntered[0] {
-			p.DIO.GeoM.Scale(3, 3)
-			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+215)
+			p.DIO.GeoM.Scale(7, 7)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+600)
 
+			i = (p.count / 8) % frameCountIdle
 			cam.Draw(assets.IdleTile[i], p.DIO, screen)
 		} else {
 			p.DIO.GeoM.Scale(2, 2)
-			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+315)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+500, p.Y+playerOffsetY+600)
 
 			cam.Draw(assets.IdleTile[i], p.DIO, screen)
 		}
@@ -100,13 +106,14 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		i := (p.count / 8) % frameCountWalk
 
 		if p.isEntered[0] {
-			p.DIO.GeoM.Scale(3, 3)
-			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+215)
+			p.DIO.GeoM.Scale(7, 7)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+600)
 
+			i = (p.count / 8) % frameCountWalk
 			cam.Draw(assets.RunTile[i], p.DIO, screen)
 		} else {
 			p.DIO.GeoM.Scale(2, 2)
-			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+315)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+500, p.Y+playerOffsetY+600)
 
 			cam.Draw(assets.RunTile[i], p.DIO, screen)
 		}
@@ -117,13 +124,14 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		i := (p.count / 8) % -frameCountWalk
 
 		if p.isEntered[0] {
-			p.DIO.GeoM.Scale(-3, 3)
-			p.DIO.GeoM.Translate(p.X+playerOffsetX+415, p.Y+playerOffsetY+215)
+			p.DIO.GeoM.Scale(-7, 7)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+550, p.Y+playerOffsetY+600)
 
+			i = (p.count / 8) % frameCountWalk
 			cam.Draw(assets.RunTile[i], p.DIO, screen)
 		} else {
 			p.DIO.GeoM.Scale(-2, 2)
-			p.DIO.GeoM.Translate(p.X+playerOffsetX+325, p.Y+playerOffsetY+315)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+600, p.Y+playerOffsetY+600)
 
 			cam.Draw(assets.RunTile[i], p.DIO, screen)
 		}
