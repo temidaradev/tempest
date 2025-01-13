@@ -8,4 +8,4 @@ https://ant-games.itch.io/free-girl-character
 
 https://free-game-assets.itch.io/free-city-backgrounds-pixel-art
 
-TODO: finish the inter after new year
+TODO: Scale for web, add npcs
