@@ -65,11 +65,11 @@ func (p *Player) Update() {
 		}
 	} else {
 		if p.X >= 0 && p.X <= 1700 {
-			cam.LookAt(p.X, p.Y-60)
+			cam.LookAt(p.X, p.Y-255)
 		} else if p.X >= 1700 {
-			cam.LookAt(1700, p.Y-60)
+			cam.LookAt(1700, p.Y-255)
 		} else if p.X < 350 {
-			cam.LookAt(0, p.Y-60)
+			cam.LookAt(0, p.Y-255)
 		}
 	}
 }
@@ -89,7 +89,7 @@ func (p *Player) Draw(screen *ebiten.Image) {
 
 		if p.isEntered[0] {
 			p.DIO.GeoM.Scale(7, 7)
-			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+600)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+550)
 
 			i = (p.count / 8) % frameCountIdle
 			cam.Draw(assets.IdleTile[i], p.DIO, screen)
@@ -107,7 +107,7 @@ func (p *Player) Draw(screen *ebiten.Image) {
 
 		if p.isEntered[0] {
 			p.DIO.GeoM.Scale(7, 7)
-			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+600)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+225, p.Y+playerOffsetY+550)
 
 			i = (p.count / 8) % frameCountWalk
 			cam.Draw(assets.RunTile[i], p.DIO, screen)
@@ -125,7 +125,7 @@ func (p *Player) Draw(screen *ebiten.Image) {
 
 		if p.isEntered[0] {
 			p.DIO.GeoM.Scale(-7, 7)
-			p.DIO.GeoM.Translate(p.X+playerOffsetX+550, p.Y+playerOffsetY+600)
+			p.DIO.GeoM.Translate(p.X+playerOffsetX+550, p.Y+playerOffsetY+550)
 
 			i = (p.count / 8) % frameCountWalk
 			cam.Draw(assets.RunTile[i], p.DIO, screen)

@@ -84,19 +84,19 @@ func (g *Game) Update() error {
 	g.npc.Update()
 	if g.player.isEntered[0] {
 		if g.player.X >= 300 && g.player.X <= 1000 {
-			cam.LookAt(g.player.X-600, g.player.Y+600)
+			cam.LookAt(g.player.X, g.player.Y+450)
 		} else if g.player.X >= 1000 {
-			cam.LookAt(g.player.X+600, g.player.Y+600)
+			cam.LookAt(g.player.X, g.player.Y+450)
 		} else if g.player.X <= 300 {
-			cam.LookAt(0, g.player.Y+600)
+			cam.LookAt(0, g.player.Y+450)
 		}
 	} else {
 		if g.player.X >= 350 && g.player.X <= 750 {
-			cam.LookAt(g.player.X-550, g.player.Y-550)
+			cam.LookAt(g.player.X-550, g.player.Y)
 		} else if g.player.X <= 350 {
-			cam.LookAt(0, g.player.Y-550)
+			cam.LookAt(0, g.player.Y)
 		} else if g.player.X >= 750 {
-			cam.LookAt(175, g.player.Y-550)
+			cam.LookAt(175, g.player.Y)
 		}
 	}
 	return nil
