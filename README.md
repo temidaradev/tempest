@@ -8,4 +8,4 @@ https://ant-games.itch.io/free-girl-character
 
 https://free-game-assets.itch.io/free-city-backgrounds-pixel-art
 
-TODO: Scale for web, add npcs
+TODO: add npcs, intro and sliding tests
