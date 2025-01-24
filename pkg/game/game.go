@@ -103,5 +103,5 @@ func (g *Game) Update() error {
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
-	return 1920, 1080
+	return outsideWidth, outsideHeight
 }

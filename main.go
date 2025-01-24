@@ -9,7 +9,7 @@ import (
 
 func main() {
 	g := game.NewGame()
-	ebiten.SetWindowSize(1920, 1080)
+	ebiten.SetWindowSize(640, 480)
 	if err := ebiten.RunGame(g); err != nil {
 		log.Fatal(err)
 	}
