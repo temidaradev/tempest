@@ -2,6 +2,7 @@ package assets
 
 import (
 	"embed"
+	_ "image/png"
 
 	"github.com/temidaradev/esset/v2"
 )
@@ -12,15 +13,12 @@ var Assets embed.FS
 //go:embed fonts/Roboto-Bold.ttf
 var MyFont []byte
 
-// MC
-var RunTile = esset.GetMultiAssets(Assets, "walk/*.png")
-var IdleTile = esset.GetMultiAssets(Assets, "idle/*.png")
+// Splash
+var Splash = esset.GetAsset(Assets, "splash/splash_1920x1080_black.png")
 
-// BG
-var CityNight = esset.GetAsset(Assets, "backgrounds/night.png")
-var CityDay = esset.GetAsset(Assets, "backgrounds/day.png")
-var Interior = esset.GetAsset(Assets, "backgrounds/interior.png")
-
-// NPC
-var DrunkTile = esset.GetMultiAssets(Assets, "npc/drunk/walk/*.png")
-var ExBfTile = esset.GetMultiAssets(Assets, "npc/ex-bf/idle/*.png")
+// Cars
+var Compact = esset.GetMultiAssets(Assets, "cars/Compact/*.png")
+var Coupe = esset.GetMultiAssets(Assets, "cars/Coupe/*.png")
+var Sedan = esset.GetMultiAssets(Assets, "cars/Sedan/*.png")
+var Sport = esset.GetMultiAssets(Assets, "cars/Sport/*.png")
+var Truck = esset.GetMultiAssets(Assets, "cars/Truck/*.png")
