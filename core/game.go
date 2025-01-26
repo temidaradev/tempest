@@ -2,6 +2,7 @@ package game
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/temidaradev/tempest/assets"
 	"github.com/temidaradev/tempest/ui"
 )
 
@@ -13,20 +14,14 @@ type Game struct {
 	splash *ui.SplashView
 }
 
-func NewGame() *Game {
-	g := &Game{
-		tick:   0,
-		splash: &ui.SplashView{},
-	}
-
-	return g
-}
-
 func (g *Game) Draw(screen *ebiten.Image) {
-
-	if g.splash.Active() {
-		g.splash.Draw(screen)
+	if g.updated {
+		if g.splash.Active() {
+			g.splash.Draw(screen)
+		}
 	}
+
+	screen.DrawImage(assets.Compact[0], &ebiten.DrawImageOptions{})
 }
 
 func (g *Game) Update() error {
