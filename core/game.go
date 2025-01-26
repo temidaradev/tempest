@@ -14,14 +14,21 @@ type Game struct {
 	splash *ui.SplashView
 }
 
+func NewGame() *Game {
+	g := &Game{
+		splash: ui.NewSplashView(),
+	}
+	return g
+}
+
 func (g *Game) Draw(screen *ebiten.Image) {
 	if g.updated {
 		if g.splash.Active() {
 			g.splash.Draw(screen)
 		}
+	} else {
+		screen.DrawImage(assets.Sedan[0], &ebiten.DrawImageOptions{})
 	}
-
-	screen.DrawImage(assets.Compact[0], &ebiten.DrawImageOptions{})
 }
 
 func (g *Game) Update() error {
@@ -31,6 +38,8 @@ func (g *Game) Update() error {
 		g.splash.Update()
 		g.updated = true
 		return nil
+	} else {
+		g.updated = false
 	}
 	return nil
 }
