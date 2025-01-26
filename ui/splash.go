@@ -48,8 +48,9 @@ func (sv *SplashView) Update() {
 }
 
 func (sv *SplashView) Draw(screen *ebiten.Image) {
-	screen.DrawImage(assets.Splash, &ebiten.DrawImageOptions{
-		Filter:     ebiten.FilterLinear,
-		ColorScale: sv.colorsc,
-	})
+	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Scale(0.32, 0.41)
+	op.Filter = ebiten.FilterLinear
+	op.ColorScale = sv.colorsc
+	screen.DrawImage(assets.Splash, op)
 }
