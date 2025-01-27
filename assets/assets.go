@@ -14,7 +14,7 @@ var Assets embed.FS
 var MyFont []byte
 
 // Splash
-var Splash = esset.GetAsset(Assets, "splash/splash_1920x1080_black.png")
+var Splash = esset.GetAsset(Assets, "splash/splash.jpg")
 
 // Cars
 var Compact = esset.GetMultiAssets(Assets, "cars/Compact/*.png")
