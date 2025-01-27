@@ -10,7 +10,6 @@ import (
 func main() {
 	g := game.NewGame()
 	ebiten.SetWindowSize(1470, 956)
-	ebiten.SetFullscreen(true)
 	if err := ebiten.RunGame(g); err != nil {
 		log.Fatal(err)
 	}
