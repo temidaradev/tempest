@@ -2,7 +2,6 @@ package game
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/temidaradev/tempest/assets"
 	"github.com/temidaradev/tempest/ui"
 )
 
@@ -11,11 +10,13 @@ type Game struct {
 	paused  bool
 	updated bool
 
+	menu   *Menu
 	splash *ui.SplashView
 }
 
 func NewGame() *Game {
 	g := &Game{
+		menu:   &Menu{},
 		splash: ui.NewSplashView(),
 	}
 	return g
@@ -27,7 +28,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			g.splash.Draw(screen)
 		}
 	} else {
-		screen.DrawImage(assets.Sedan[0], &ebiten.DrawImageOptions{})
+		g.menu.SelectCar(screen)
 	}
 }
 
@@ -40,7 +41,9 @@ func (g *Game) Update() error {
 		return nil
 	} else {
 		g.updated = false
+		g.menu.HandleSelectCar()
 	}
+
 	return nil
 }
 
