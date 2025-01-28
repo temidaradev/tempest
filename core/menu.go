@@ -18,39 +18,17 @@ type Menu struct {
 
 func (m *Menu) SelectCar(screen *ebiten.Image) {
 	if m.selection[0] {
-		esset.DrawText(screen, assets.MyFont, "Select A Color", 48, w/2-148, h/2-148, color.White)
-		esset.DrawText(screen, assets.MyFont, "Press Enter To Select Color", 48, w/2-288, h/2-88, color.White)
 		if m.index == 1 {
-			for j, _ := range assets.Compact {
-				op := &ebiten.DrawImageOptions{}
-				op.GeoM.Scale(1.5, 1.5)
-				op.GeoM.Translate(625+float64(j)*60, 500)
-				screen.DrawImage(assets.Compact[j], op)
-			}
+			esset.DrawText(screen, assets.MyFont, "Compact", 48, w/2-138, h/2-48, color.White)
 		}
 		if m.index == 2 {
-			for i, _ := range assets.Coupe {
-				op := &ebiten.DrawImageOptions{}
-				op.GeoM.Scale(1.5, 1.5)
-				op.GeoM.Translate(625+float64(i)*60, 500)
-				screen.DrawImage(assets.Coupe[i], op)
-			}
+			esset.DrawText(screen, assets.MyFont, "Coupe", 48, w/2-138, h/2-48, color.White)
 		}
 		if m.index == 3 {
-			for i, _ := range assets.Sedan {
-				op := &ebiten.DrawImageOptions{}
-				op.GeoM.Scale(1.5, 1.5)
-				op.GeoM.Translate(625+float64(i)*60, 500)
-				screen.DrawImage(assets.Sedan[i], op)
-			}
+			esset.DrawText(screen, assets.MyFont, "Sedan", 48, w/2-138, h/2-48, color.White)
 		}
 		if m.index == 4 {
-			for i, _ := range assets.Sport {
-				op := &ebiten.DrawImageOptions{}
-				op.GeoM.Scale(1.5, 1.5)
-				op.GeoM.Translate(625+float64(i)*60, 500)
-				screen.DrawImage(assets.Sport[i], op)
-			}
+			esset.DrawText(screen, assets.MyFont, "Sport", 48, w/2-138, h/2-48, color.White)
 		}
 	} else {
 		esset.DrawText(screen, assets.MyFont, "Select A Car", 48, w/2-148, h/2-148, color.White)
@@ -78,7 +56,18 @@ func (m *Menu) HandleSelectCar() error {
 	}
 	if m.selection[0] {
 		if inpututil.IsKeyJustPressed(ebiten.KeyEnter) {
-			fmt.Println("Color Selection")
+			if m.index == 1 {
+				fmt.Println("Compact")
+			}
+			if m.index == 2 {
+				fmt.Println("Coupe")
+			}
+			if m.index == 3 {
+				fmt.Println("Sedan")
+			}
+			if m.index == 4 {
+				fmt.Println("Sport")
+			}
 		}
 	}
 	m.Button()
