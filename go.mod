@@ -5,7 +5,7 @@ go 1.23.4
 require (
 	github.com/hajimehoshi/ebiten/v2 v2.8.5
 	github.com/setanarut/kamera/v2 v2.95.0
-	github.com/temidaradev/esset/v2 v2.0.0
+	github.com/temidaradev/esset/v2 v2.1.0
 )
 
 require (
