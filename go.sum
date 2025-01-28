@@ -20,8 +20,6 @@ github.com/setanarut/fastnoise v1.1.1 h1:cD9gUjY9GMxVab+B7AY09j2GAHMdiKzchDE5z6d
 github.com/setanarut/fastnoise v1.1.1/go.mod h1:74vG3/RcPPcNi2M0riHJXQp9/+eTSh0rnQ/0WTEY6SU=
 github.com/setanarut/kamera/v2 v2.95.0 h1:APYT+/sLqEpRRaBZaWsjXdyEEZSMPxAujnrslrIxwkk=
 github.com/setanarut/kamera/v2 v2.95.0/go.mod h1:s6WBlWZLW0P0KNF28bap1sC3LioN+w2wFjCmkM3ilTo=
-github.com/temidaradev/esset/v2 v2.0.0 h1:ICuuDH+8lKthp5ud6qaODQ7S5FcY37i59x5azn2CrpI=
-github.com/temidaradev/esset/v2 v2.0.0/go.mod h1:q8WtPA2J9p7t53ZpfnNRJGA2ySWhkHTzKAo0/f9RMlI=
 github.com/temidaradev/esset/v2 v2.1.0 h1:qQxJD0EwndCI5Xf3eV4/VV5OFa//vl+LjqGLCC+J4FY=
 github.com/temidaradev/esset/v2 v2.1.0/go.mod h1:q8WtPA2J9p7t53ZpfnNRJGA2ySWhkHTzKAo0/f9RMlI=
 golang.org/x/image v0.21.0 h1:c5qV36ajHpdj4Qi0GnE0jUc/yuo33OLFaa0d+crTD5s=
