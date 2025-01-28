@@ -34,7 +34,8 @@ func NewGame() *Game {
 		X:     0,
 		Y:     0,
 		DIO:   &ebiten.DrawImageOptions{},
-		speed: 10,
+		angle: 90,
+		speed: 30,
 	}
 	return g
 }
@@ -47,6 +48,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	} else {
 		g.menu.SelectCar(screen)
 		if g.menu.sDone {
+			MakeBackground(screen)
 			g.car.DrawCar(screen, g.menu.IndexC)
 		}
 	}
