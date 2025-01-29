@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<iframe src="index.html" width="1470" height="956"></iframe>
+<script src="wasm_exec.js"></script>
+<script>
+const go = new Go();
+WebAssembly.instantiateStreaming(fetch("yourgame.wasm"), go.importObject).then(result => {
+    go.run(result.instance);
+});
+</script>
