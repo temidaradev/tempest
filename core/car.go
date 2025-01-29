@@ -48,18 +48,18 @@ func (c *Car) Update() {
 	c.friction = 0.1
 
 	if ebiten.IsKeyPressed(ebiten.KeyW) {
-		c.speed += accel * c.maxSpeed
+		c.speed += accel
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyS) {
-		c.speed -= accel * c.maxSpeed
-
+		c.speed -= accel
 	}
 
+	// No need to include speed/max speed here
 	if ebiten.IsKeyPressed(ebiten.KeyA) {
-		c.angle -= turnSpeed * (c.speed / c.maxSpeed)
+		c.angle -= turnSpeed
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyD) {
-		c.angle += turnSpeed * (c.speed / c.maxSpeed)
+		c.angle += turnSpeed
 	}
 
 	if c.speed > c.maxSpeed {
@@ -81,6 +81,11 @@ func (c *Car) Update() {
 		}
 	}
 
-	c.X += c.speed * math.Cos(c.angle)
-	c.Y += c.speed * math.Sin(c.angle)
+	// calculate speed in x and y
+	speedX := c.speed * math.Sin(c.angle)
+	speedY := c.speed * math.Cos(c.angle)
+
+	// update position based on velocity over time (this is meters per second * seconds = delta meters )
+	c.X += speedX * 0.5
+	c.Y += speedY * 0.5
 }
