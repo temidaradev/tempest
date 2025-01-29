@@ -22,6 +22,14 @@ func DegreesToRadians(degrees float64) float64 {
 	return degrees * (math.Pi / 180)
 }
 
+func (c *Car) Position() (int, int) {
+	return int(c.X), int(c.Y)
+}
+
+func (c *Car) Angle() int {
+	return int(c.angle)
+}
+
 func (c *Car) DrawCar(screen *ebiten.Image, color int, result int) {
 	c.DIO.GeoM.Translate(-float64(32)/2, -float64(64)/2)
 	c.DIO.GeoM.Rotate(DegreesToRadians(c.angle))

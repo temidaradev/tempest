@@ -19,6 +19,9 @@ var FontFace text.Face
 // Splash
 var Splash = esset.GetAsset(Assets, "splash/splash.jpg")
 
+// Rug
+var Rug = esset.GetAsset(Assets, "background/rug.png")
+
 // Cars
 var Compact = esset.GetMultiAssets(Assets, "cars/Compact/*.png")
 var Coupe = esset.GetMultiAssets(Assets, "cars/Coupe/*.png")

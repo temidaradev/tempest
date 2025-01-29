@@ -67,6 +67,9 @@ func (g *Game) Update() error {
 		g.menu.HandleSelectCar()
 		if g.menu.sDone {
 			cam.LookAt(g.car.X, g.car.Y)
+			if g.car.Y <= 0 {
+				cam.LookAt(g.car.X, 0)
+			}
 			g.car.Update()
 		}
 	}
