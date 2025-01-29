@@ -18,7 +18,7 @@ type Car struct {
 	friction float64
 }
 
-func (c *Car) DrawCar(screen *ebiten.Image, color int) {
+func (c *Car) DrawCar(screen *ebiten.Image, color int, result int) {
 	c.DIO.GeoM.Scale(2, 2)
 	c.DIO.GeoM.Rotate(c.angle)
 	c.DIO.GeoM.Translate(c.X+700, c.Y+450)
@@ -26,7 +26,18 @@ func (c *Car) DrawCar(screen *ebiten.Image, color int) {
 	msg := fmt.Sprintf("X: %+v, Y: %+v, Speed: %+v", c.X, c.Y, c.speed)
 	ebitenutil.DebugPrint(screen, msg)
 
-	cam.Draw(assets.Compact[color-1], c.DIO, screen)
+	if result == 1 {
+		cam.Draw(assets.Compact[color-1], c.DIO, screen)
+	}
+	if result == 2 {
+		cam.Draw(assets.Coupe[color-1], c.DIO, screen)
+	}
+	if result == 3 {
+		cam.Draw(assets.Sedan[color-1], c.DIO, screen)
+	}
+	if result == 4 {
+		cam.Draw(assets.Sport[color-1], c.DIO, screen)
+	}
 	c.DIO.GeoM.Reset()
 }
 
@@ -36,12 +47,12 @@ func (c *Car) Update() {
 	c.maxSpeed = 3.0
 	c.friction = 0.1
 
-	// Hızlanma ve yavaşlama
 	if ebiten.IsKeyPressed(ebiten.KeyW) {
-		c.speed += accel
+		c.speed += accel * c.maxSpeed
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyS) {
-		c.speed -= accel
+		c.speed -= accel * c.maxSpeed
+
 	}
 
 	if ebiten.IsKeyPressed(ebiten.KeyA) {

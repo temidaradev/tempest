@@ -34,10 +34,6 @@ func DrawCompactForMenu(screen *ebiten.Image) {
 	}
 }
 
-func CompactGetColor(index int) *ebiten.Image {
-	return Compact[index]
-}
-
 func DrawCoupeForMenu(screen *ebiten.Image) {
 	for j, _ := range Coupe {
 		op := &ebiten.DrawImageOptions{}
@@ -45,10 +41,6 @@ func DrawCoupeForMenu(screen *ebiten.Image) {
 		op.GeoM.Translate(620+float64(j)*60, 500)
 		screen.DrawImage(Coupe[j], op)
 	}
-}
-
-func CoupeGetColor(index int) *ebiten.Image {
-	return Coupe[index]
 }
 
 func DrawSedanForMenu(screen *ebiten.Image) {
@@ -60,10 +52,6 @@ func DrawSedanForMenu(screen *ebiten.Image) {
 	}
 }
 
-func SedanGetColor(index int) *ebiten.Image {
-	return Sedan[index]
-}
-
 func DrawSportForMenu(screen *ebiten.Image) {
 	for j, _ := range Sport {
 		op := &ebiten.DrawImageOptions{}
@@ -71,8 +59,4 @@ func DrawSportForMenu(screen *ebiten.Image) {
 		op.GeoM.Translate(610+float64(j)*60, 500)
 		screen.DrawImage(Sport[j], op)
 	}
-}
-
-func SportGetColor(index int) *ebiten.Image {
-	return Sport[index]
 }

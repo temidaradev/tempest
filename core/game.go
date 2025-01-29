@@ -21,7 +21,7 @@ func init() {
 	assets.FontFace, _ = esset.GetFont(assets.MyFont, 48)
 
 	cam.SmoothType = kamera.SmoothDamp
-	cam.SmoothOptions.SmoothDampTimeY = 1
+	//cam.SmoothOptions.SmoothDampTimeY = 1
 }
 
 func NewGame() *Game {
@@ -49,7 +49,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		g.menu.SelectCar(screen)
 		if g.menu.sDone {
 			MakeBackground(screen)
-			g.car.DrawCar(screen, g.menu.IndexC)
+			g.car.DrawCar(screen, g.menu.IndexC, int(g.menu.index))
 		}
 	}
 }
