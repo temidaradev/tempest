@@ -13,7 +13,8 @@ func main() {
 	fps := ebiten.ActualFPS()
 	title := fmt.Sprint("Tempest FPS: %v", fps)
 	ebiten.SetWindowTitle(title)
-	ebiten.SetWindowSize(1470, 956)
+	ebiten.SetWindowSize(1920, 1080)
+	ebiten.SetFullscreen(true)
 	if err := ebiten.RunGame(g); err != nil {
 		log.Fatal(err)
 	}

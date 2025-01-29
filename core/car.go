@@ -34,7 +34,7 @@ func (c *Car) DrawCar(screen *ebiten.Image, color int, result int) {
 	c.DIO.GeoM.Translate(-float64(32)/2, -float64(64)/2)
 	c.DIO.GeoM.Rotate(DegreesToRadians(c.angle))
 	c.DIO.GeoM.Scale(2, 2)
-	c.DIO.GeoM.Translate(c.X+745, c.Y+500)
+	c.DIO.GeoM.Translate(c.X+950, c.Y+550)
 
 	msg := fmt.Sprintf("X: %+v, Y: %+v, Angle: %+v, FPS: %+v", c.X, c.Y, c.angle, ebiten.ActualFPS())
 	ebitenutil.DebugPrint(screen, msg)
@@ -98,4 +98,17 @@ func (c *Car) Update() {
 
 	c.X += c.speed * math.Sin(DegreesToRadians(c.angle))
 	c.Y -= c.speed * math.Cos(DegreesToRadians(c.angle))
+
+	if c.X >= 9470 {
+		c.X = 9470
+	}
+	if c.Y <= -500 {
+		c.Y = -500
+	}
+	if c.Y >= 4890 {
+		c.Y = 4890
+	}
+	if c.X <= -905 {
+		c.X = -905
+	}
 }
