@@ -18,6 +18,7 @@ var FontFace text.Face
 
 // Splash
 var Splash = esset.GetAsset(Assets, "splash/splash.jpg")
+var SplashFull = esset.GetAsset(Assets, "splash/splash_1920x1080_black.png")
 
 // Rug
 var Rug = esset.GetAsset(Assets, "background/rug.png")
@@ -32,7 +33,7 @@ func DrawCompactForMenu(screen *ebiten.Image) {
 	for j, _ := range Compact {
 		op := &ebiten.DrawImageOptions{}
 		op.GeoM.Scale(1.5, 1.5)
-		op.GeoM.Translate(610+float64(j)*60, 500)
+		op.GeoM.Translate(835+float64(j)*60, 560)
 		screen.DrawImage(Compact[j], op)
 	}
 }
@@ -41,7 +42,7 @@ func DrawCoupeForMenu(screen *ebiten.Image) {
 	for j, _ := range Coupe {
 		op := &ebiten.DrawImageOptions{}
 		op.GeoM.Scale(1.5, 1.5)
-		op.GeoM.Translate(620+float64(j)*60, 500)
+		op.GeoM.Translate(845+float64(j)*60, 560)
 		screen.DrawImage(Coupe[j], op)
 	}
 }
@@ -50,7 +51,7 @@ func DrawSedanForMenu(screen *ebiten.Image) {
 	for j, _ := range Sedan {
 		op := &ebiten.DrawImageOptions{}
 		op.GeoM.Scale(1.5, 1.5)
-		op.GeoM.Translate(615+float64(j)*60, 500)
+		op.GeoM.Translate(840+float64(j)*60, 560)
 		screen.DrawImage(Sedan[j], op)
 	}
 }
@@ -59,7 +60,7 @@ func DrawSportForMenu(screen *ebiten.Image) {
 	for j, _ := range Sport {
 		op := &ebiten.DrawImageOptions{}
 		op.GeoM.Scale(1.5, 1.5)
-		op.GeoM.Translate(610+float64(j)*60, 500)
+		op.GeoM.Translate(835+float64(j)*60, 560)
 		screen.DrawImage(Sport[j], op)
 	}
 }

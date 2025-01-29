@@ -51,5 +51,5 @@ func (sv *SplashView) Draw(screen *ebiten.Image) {
 	op := &ebiten.DrawImageOptions{}
 	op.Filter = ebiten.FilterLinear
 	op.ColorScale = sv.colorsc
-	screen.DrawImage(assets.Splash, op)
+	screen.DrawImage(assets.SplashFull, op)
 }

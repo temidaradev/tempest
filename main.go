@@ -9,7 +9,8 @@ import (
 
 func main() {
 	g := game.NewGame()
-	ebiten.SetWindowSize(1470, 956)
+	ebiten.SetWindowTitle("Tempest")
+	ebiten.SetWindowSize(1920, 1080)
 	if err := ebiten.RunGame(g); err != nil {
 		log.Fatal(err)
 	}

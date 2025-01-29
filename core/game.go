@@ -2,6 +2,7 @@ package game
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/inpututil"
 	"github.com/setanarut/kamera/v2"
 	"github.com/temidaradev/esset/v2"
 	"github.com/temidaradev/tempest/assets"
@@ -21,7 +22,7 @@ func init() {
 	assets.FontFace, _ = esset.GetFont(assets.MyFont, 48)
 
 	cam.SmoothType = kamera.SmoothDamp
-	cam.SmoothOptions.SmoothDampTimeY = 1
+	cam.SmoothOptions.SmoothDampTimeY = 0.5
 }
 
 func NewGame() *Game {
@@ -68,6 +69,9 @@ func (g *Game) Update() error {
 		if g.menu.sDone {
 			cam.LookAt(g.car.X, g.car.Y)
 			g.car.Update()
+			if inpututil.IsKeyJustPressed(ebiten.KeyEscape) {
+				return ebiten.Termination
+			}
 		}
 	}
 
