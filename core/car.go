@@ -36,7 +36,7 @@ func (c *Car) DrawCar(screen *ebiten.Image, color int, result int) {
 	c.DIO.GeoM.Scale(2, 2)
 	c.DIO.GeoM.Translate(c.X+950, c.Y+550)
 
-	msg := fmt.Sprintf("X: %+v, Y: %+v, Angle: %+v, FPS: %+v", c.X, c.Y, c.angle, ebiten.ActualFPS())
+	msg := fmt.Sprintf("FPS: %+v", ebiten.ActualFPS())
 	ebitenutil.DebugPrint(screen, msg)
 
 	if result == 1 {
