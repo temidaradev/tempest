@@ -21,7 +21,7 @@ func init() {
 	assets.FontFace, _ = esset.GetFont(assets.MyFont, 48)
 
 	cam.SmoothType = kamera.SmoothDamp
-	//cam.SmoothOptions.SmoothDampTimeY = 1
+	cam.SmoothOptions.SmoothDampTimeY = 1
 }
 
 func NewGame() *Game {

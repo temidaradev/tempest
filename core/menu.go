@@ -58,23 +58,25 @@ func (m *Menu) SelectCar(screen *ebiten.Image) {
 }
 
 func (m *Menu) HandleSelectCar() error {
-	if inpututil.IsKeyJustPressed(ebiten.KeyArrowRight) {
-		if !m.selection[1] {
-			m.index++
+	if !m.sDone {
+		if inpututil.IsKeyJustPressed(ebiten.KeyArrowRight) {
+			if !m.selection[1] {
+				m.index++
+			}
+			m.selection[0] = true
+			if m.index >= 4 {
+				m.index = 4
+			}
 		}
-		m.selection[0] = true
-		if m.index >= 4 {
-			m.index = 4
+		if inpututil.IsKeyJustPressed(ebiten.KeyArrowLeft) {
+			if !m.selection[1] {
+				m.index--
+			}
+			if m.index <= 1 {
+				m.index = 1
+			}
+			m.selection[0] = true
 		}
-	}
-	if inpututil.IsKeyJustPressed(ebiten.KeyArrowLeft) {
-		if !m.selection[1] {
-			m.index--
-		}
-		if m.index <= 1 {
-			m.index = 1
-		}
-		m.selection[0] = true
 	}
 	if m.selection[0] {
 		if inpututil.IsKeyJustPressed(ebiten.KeyEnter) {

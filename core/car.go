@@ -9,10 +9,6 @@ import (
 	"github.com/temidaradev/tempest/assets"
 )
 
-var (
-	gophersImage *ebiten.Image
-)
-
 type Car struct {
 	X, Y     float64
 	DIO      *ebiten.DrawImageOptions
@@ -29,8 +25,8 @@ func DegreesToRadians(degrees float64) float64 {
 func (c *Car) DrawCar(screen *ebiten.Image, color int, result int) {
 	c.DIO.GeoM.Translate(-float64(32)/2, -float64(64)/2)
 	c.DIO.GeoM.Rotate(DegreesToRadians(c.angle))
-	c.DIO.GeoM.Translate(c.X+320, c.Y+240)
 	c.DIO.GeoM.Scale(2, 2)
+	c.DIO.GeoM.Translate(c.X+745, c.Y+500)
 
 	msg := fmt.Sprintf("X: %+v, Y: %+v, Angle: %+v, FPS: %+v", c.X, c.Y, c.angle, ebiten.ActualFPS())
 	ebitenutil.DebugPrint(screen, msg)
@@ -53,7 +49,7 @@ func (c *Car) DrawCar(screen *ebiten.Image, color int, result int) {
 func (c *Car) Update() {
 	turnSpeed := 3.0
 	accel := 1.
-	c.maxSpeed = 5.0
+	c.maxSpeed = 7.0
 	c.friction = 0.1
 
 	if ebiten.IsKeyPressed(ebiten.KeyW) {
@@ -61,7 +57,9 @@ func (c *Car) Update() {
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyS) {
 		c.speed -= accel * c.maxSpeed
-
+	}
+	if ebiten.IsKeyPressed(ebiten.KeyShiftLeft) {
+		c.maxSpeed = 12
 	}
 
 	if ebiten.IsKeyPressed(ebiten.KeyA) {
