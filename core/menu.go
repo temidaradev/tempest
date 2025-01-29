@@ -139,9 +139,11 @@ func (m *Menu) HandleSelectCar() error {
 }
 
 func (m *Menu) Button() {
-	if inpututil.IsKeyJustPressed(ebiten.KeyEscape) {
-		m.selection[0] = false
-		m.selection[1] = false
-		m.index = 0
+	if !m.sDone {
+		if inpututil.IsKeyJustPressed(ebiten.KeyEscape) {
+			m.selection[0] = false
+			m.selection[1] = false
+			m.index = 0
+		}
 	}
 }

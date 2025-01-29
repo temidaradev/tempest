@@ -23,7 +23,7 @@ func (c *Car) DrawCar(screen *ebiten.Image, color int, result int) {
 	c.DIO.GeoM.Rotate(c.angle)
 	c.DIO.GeoM.Translate(c.X+700, c.Y+450)
 
-	msg := fmt.Sprintf("X: %+v, Y: %+v, Speed: %+v", c.X, c.Y, c.speed)
+	msg := fmt.Sprintf("X: %+v, Y: %+v, Angle: %+v, FPS: %+v", c.X, c.Y, c.angle, ebiten.ActualFPS())
 	ebitenutil.DebugPrint(screen, msg)
 
 	if result == 1 {
@@ -44,7 +44,7 @@ func (c *Car) DrawCar(screen *ebiten.Image, color int, result int) {
 func (c *Car) Update() {
 	turnSpeed := 0.01
 	accel := 1.
-	c.maxSpeed = 3.0
+	c.maxSpeed = 5.0
 	c.friction = 0.1
 
 	if ebiten.IsKeyPressed(ebiten.KeyW) {
